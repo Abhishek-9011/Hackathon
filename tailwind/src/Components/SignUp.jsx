@@ -29,9 +29,9 @@ function SignUp() {
     };
 
     try {
-      let endpoint = "https://hackathon-flame-chi.vercel.app/"; // Default to user signup
+      let endpoint = "http://localhost:3000/user/signup"; // Default to user signup
       if (role === "admin") {
-        endpoint = "https://hackathon-flame-chi.vercel.app/"; // If admin, send to admin signup
+      endpoint = "http://localhost:3000/admin/signup"; // If admin, send to admin signup
       }
 
       const response = await axios.post(endpoint, userData);
