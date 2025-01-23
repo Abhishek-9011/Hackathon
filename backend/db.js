@@ -1,35 +1,38 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-const ObjectId = mongoose.ObjectId;
+const { Schema } = mongoose;
 
 // User Schema
 const userSchema = new Schema({
   username: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true, index: true },
   password: { type: String, required: true },
   contact: { type: String, required: true },
-  role: { type: String, enum: ["user", "admin"], default: "user" }, // Role field
+  role: { type: String, enum: ["user", "admin"], default: "user" },
 }, { timestamps: true });
 
 // Admin Schema
 const adminSchema = new Schema({
   username: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true, index: true },
   password: { type: String, required: true },
 }, { timestamps: true });
 
 // Hospital Schema
-
 const hospitalSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    location: { type: String, required: true },
-    contact: { type: String, required: true },
-    services: [String], // e.g., ["Emergency", "Cardiology", "Pediatrics"]
-  });
+  name: { type: String, required: true },
+  location: { type: String, required: true },
+  contact: { type: String, required: true },
+  services: {
+    type: [String],
+    required: true,
+    validate: [services => services.length > 0, 'At least one service is required']
+  },
+});
+
 // Appointment Schema
 const appointmentSchema = new Schema({
-  userId: { type: ObjectId, ref: "user", required: true }, // Reference to the user
-  hospitalId: { type: ObjectId, ref: "hospital", required: true }, // Reference to the hospital
+  userId: { type: Schema.Types.ObjectId, ref: "user", required: true },
+  hospitalId: { type: Schema.Types.ObjectId, ref: "hospital", required: true },
   appointmentDate: { type: Date, required: true },
   status: { type: String, enum: ["pending", "confirmed", "cancelled"], default: "pending" },
 }, { timestamps: true });

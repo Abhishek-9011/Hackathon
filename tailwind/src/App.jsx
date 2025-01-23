@@ -5,6 +5,8 @@ import Hero from "./components/Hero";
 import SignUp from "./Components/Signup";
 import SignIn from "./Components/SignIn";
 import Home from "./Components/Home";
+import AllHospitals from "./Components/AllHospital";
+import AddHospital from "./Components/AddHospital";
 
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/AllHospital" element={<AllHospitals />} />
+        <Route path="/AddHospital" element={<AddHospital />} />
       </Routes>
     </Router>
   );

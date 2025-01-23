@@ -27,10 +27,18 @@ function Home() {
             </li>
             <li>
               <Link
-                to="/hospitals"
+                to="/AddHospital"
                 className="block py-2 px-4 rounded hover:bg-blue-700"
               >
-                Hospitals
+                Add Hospitals
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/AllHospital"
+                className="block py-2 px-4 rounded hover:bg-blue-700"
+              >
+                All Hospitals
               </Link>
             </li>
             <li>
